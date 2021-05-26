@@ -23,9 +23,9 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class BooksInstanceInline(admin.TabularInline):
-    model = BookInstance
+    model = BookInstance    
     extra = 0
-
+ 
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
@@ -36,12 +36,13 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back')
-    list_display = ('id', 'due_back', 'status', 'display_book')
+    list_display = ('id', 'due_back', 'status', 'borrower', 'display_book')
     fieldsets = (
         ('基本信息', {
-            'fields': ('book','imprint', 'id')
+            'fields': ('book', 'imprint', 'id')
         }),
         ('Availability', {
-            'fields': ('status', 'due_back')
+            'fields': ('status', 'due_back', 'borrower')
         }),
     )
+    
